@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genç İHH Kocaeli | Geleceği İyilikle İnşa Ediyoruz</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts (Inter & Plus Jakarta Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ihh: {
+                            green: '#006837',
+                            darkgreen: '#004d28',
+                            gold: '#a38f38',
+                            dark: '#0f172a',
+                            light: '#f8fafc'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-overlay {
+            background: linear-gradient(135deg, rgba(0, 104, 55, 0.05) 0%, rgba(15, 23, 42, 0.03) 100%);
+        }
+        .hero-bg {
+            background-color: #f8fafc;
+            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-white/90 border-b border-slate-200/80 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo & Brand Name -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <!-- Relative Local Logo Path for GitHub Repository Root -->
+                    <div class="w-12 h-12 bg-white rounded-xl shadow-md border border-slate-100 p-1 flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform duration-300">
+                        <img src="./logo.png" 
+                             alt="Genç İHH Kocaeli Logo" 
+                             class="w-full h-full object-contain"
+                             onerror="this.src='./GENC_IHH_KOCAELI-1.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';}">
+                        <div class="hidden w-full h-full bg-ihh-green text-white font-bold text-xs items-center justify-center rounded text-center">İHH</div>
+                    </div>
+                    <div>
+                        <span class="block font-heading font-extrabold text-lg sm:text-xl text-slate-900 leading-tight">GENÇ İHH</span>
+                        <span class="block font-medium text-xs text-ihh-green tracking-wider uppercase">Kocaeli</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center gap-8 font-medium text-slate-600 text-sm">
+                    <a href="#hakkimizda" class="hover:text-ihh-green transition-colors py-1">Hakkımızda</a>
+                    <a href="#faaliyetler" class="hover:text-ihh-green transition-colors py-1">Faaliyetlerimiz</a>
+                    <a href="#duyurular" class="hover:text-ihh-green transition-colors py-1">Duyurular & Etkinlikler</a>
+                    <a href="#iletisim" class="hover:text-ihh-green transition-colors py-1">İletişim</a>
+                </nav>
+
+                <!-- Actions -->
+                <div class="hidden md:flex items-center gap-4">
+                    <button onclick="openModal()" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm text-white bg-ihh-green hover:bg-ihh-darkgreen shadow-lg shadow-ihh-green/20 hover:shadow-ihh-green/30 transition-all transform hover:-translate-y-0.5">
+                        <i data-lucide="heart-handshake" class="w-4 h-4"></i>
+                        <span>Gönüllü Ol</span>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button type="button" onclick="toggleMobileMenu()" class="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none" aria-label="Menü">
+                        <i data-lucide="menu" id="menuIcon" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden border-b border-slate-200 bg-white px-4 pt-2 pb-6 space-y-3 shadow-xl">
+            <a href="#hakkimizda" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-50 hover:text-ihh-green">Hakkımızda</a>
+            <a href="#faaliyetler" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-50 hover:text-ihh-green">Faaliyetlerimiz</a>
+            <a href="#duyurular" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-50 hover:text-ihh-green">Duyurular & Etkinlikler</a>
+            <a href="#iletisim" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-50 hover:text-ihh-green">İletişim</a>
+            <div class="pt-2">
+                <button onclick="openModal(); toggleMobileMenu();" class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-semibold text-white bg-ihh-green hover:bg-ihh-darkgreen shadow-md">
+                    <i data-lucide="heart-handshake" class="w-5 h-5"></i>
+                    <span>Gönüllü Ol</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="relative hero-bg overflow-hidden py-16 lg:py-24 border-b border-slate-200/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Text Content -->
+                    <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 border border-emerald-200 text-ihh-darkgreen text-xs font-semibold uppercase tracking-wider">
+                            <span class="w-2 h-2 rounded-full bg-ihh-green animate-pulse"></span>
+                            Genç İHH Kocaeli Teşkilatı
+                        </div>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-extrabold text-slate-900 tracking-tight leading-tight">
+                            Geleceği <span class="text-ihh-green underline decoration-emerald-300 decoration-wavy decoration-2 underline-offset-8">İyilikle</span> İnşa Ediyoruz
+                        </h1>
+                        <p class="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
+                            Gençliğin enerjisini iyiliğin gücüyle buluşturuyor; Kocaeli’de eğitim, kültür ve insani yardım alanlarında yarınlara umut taşıyoruz.
+                        </p>
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                            <button onclick="openModal()" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-base text-white bg-ihh-green hover:bg-ihh-darkgreen shadow-xl shadow-ihh-green/25 hover:shadow-ihh-green/40 transition-all transform hover:-translate-y-0.5">
+                                <i data-lucide="user-plus" class="w-5 h-5"></i>
+                                <span>Aramıza Katıl</span>
+                            </button>
+                            <a href="#faaliyetler" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-base text-slate-700 bg-white border border-slate-300 hover:bg-slate-50 hover:text-ihh-green shadow-sm transition-all">
+                                <span>Çalışmalarımız</span>
+                                <i data-lucide="arrow-down-right" class="w-5 h-5"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Logo Visual Container -->
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="relative w-full max-w-md">
+                            <!-- Background Glow Effect -->
+                            <div class="absolute inset-0 bg-gradient-to-tr from-ihh-green/20 to-emerald-200/30 rounded-3xl blur-2xl transform rotate-3 scale-95"></div>
+                            
+                            <!-- Card Backdrop -->
+                            <div class="relative bg-white border border-slate-200/80 rounded-3xl p-8 sm:p-10 shadow-2xl flex flex-col items-center text-center backdrop-blur-sm">
+                                <div class="w-48 h-48 sm:w-56 sm:h-56 relative flex items-center justify-center mb-6">
+                                    <img src="./logo.png" 
+                                         alt="Genç İHH Kocaeli Logo" 
+                                         class="w-full h-full object-contain filter drop-shadow-md"
+                                         onerror="this.src='./GENC_IHH_KOCAELI-1.png';">
+                                </div>
+                                <div class="w-full pt-4 border-t border-slate-100 flex items-center justify-around text-slate-600 text-xs font-semibold tracking-wider uppercase">
+                                    <span class="flex items-center gap-1"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-ihh-green"></i> Kocaeli</span>
+                                    <span>•</span>
+                                    <span class="flex items-center gap-1"><i data-lucide="users" class="w-3.5 h-3.5 text-ihh-green"></i> Gençlik Topluluğu</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="hakkimizda" class="py-20 bg-white border-b border-slate-200/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center mb-16">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-ihh-green mb-3">BİZ KİMİZ?</h2>
+                    <h3 class="text-3xl sm:text-4xl font-heading font-bold text-slate-900">İyilikte Yarışan Genç Nesiller İçi Çalışıyoruz</h3>
+                    <p class="mt-4 text-slate-600 text-lg leading-relaxed">
+                        Genç İHH Kocaeli; lise, üniversite ve genç çalışan katmanlarındaki gençlerin insani yardım, sosyal sorumluluk ve kişisel gelişim süreçlerine aktif katılımını destekleyen bir gençlik hareketidir.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div class="p-8 rounded-2xl bg-slate-50 border border-slate-200/70 hover:border-emerald-300 transition-all hover:shadow-lg group">
+                        <div class="w-14 h-14 bg-emerald-100 text-ihh-green rounded-xl flex items-center justify-center mb-6 group-hover:bg-ihh-green group-hover:text-white transition-colors">
+                            <i data-lucide="target" class="w-7 h-7"></i>
+                        </div>
+                        <h4 class="text-xl font-heading font-bold text-slate-900 mb-3">Misyonumuz</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Adaletin, merhametin ve iyiliğin yeryüzünde hakim olması amacıyla bilinçli, ahlaklı ve donanımlı gençler yetiştirmek.
+                        </p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="p-8 rounded-2xl bg-slate-50 border border-slate-200/70 hover:border-emerald-300 transition-all hover:shadow-lg group">
+                        <div class="w-14 h-14 bg-emerald-100 text-ihh-green rounded-xl flex items-center justify-center mb-6 group-hover:bg-ihh-green group-hover:text-white transition-colors">
+                            <i data-lucide="eye" class="w-7 h-7"></i>
+                        </div>
+                        <h4 class="text-xl font-heading font-bold text-slate-900 mb-3">Vizyonumuz</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Türkiye'de ve dünyada mazlumların sesi olan, toplumsal meselelere duyarlı ve geleceğe yön veren öncü bir gençlik teşkilatı olmak.
+                        </p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="p-8 rounded-2xl bg-slate-50 border border-slate-200/70 hover:border-emerald-300 transition-all hover:shadow-lg group">
+                        <div class="w-14 h-14 bg-emerald-100 text-ihh-green rounded-xl flex items-center justify-center mb-6 group-hover:bg-ihh-green group-hover:text-white transition-colors">
+                            <i data-lucide="heart" class="w-7 h-7"></i>
+                        </div>
+                        <h4 class="text-xl font-heading font-bold text-slate-900 mb-3">Değerlerimiz</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Gönüllülük, kardeşlik, samimiyet, adalet, sürekli gelişim ve mazlumun yanında olma ilkesiyle hareket ediyoruz.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Activities Section -->
+        <section id="faaliyetler" class="py-20 bg-slate-50 border-b border-slate-200/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                    <div>
+                        <h2 class="text-xs font-bold uppercase tracking-widest text-ihh-green mb-3">FAALİYET ALANLARIMIZ</h2>
+                        <h3 class="text-3xl sm:text-4xl font-heading font-bold text-slate-900">Ne Yapıyoruz?</h3>
+                    </div>
+                    <p class="text-slate-600 max-w-md mt-4 md:mt-0 text-sm">
+                        Kocaeli genelindeki lise ve Kocaeli Üniversitesi bünyesinde yürüttüğümüz başlıca çalışma alanlarımız.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Activity 1 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-slate-100 text-slate-800 flex items-center justify-center mb-5">
+                                <i data-lucide="graduation-cap" class="w-6 h-6 text-ihh-green"></i>
+                            </div>
+                            <h4 class="font-heading font-bold text-lg text-slate-900 mb-2">Eğitim & Kampüs</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                Akademik söyleşiler, kitap okuma halkaları, atölyeler ve üniversite kulüp faaliyetleri.
+                            </p>
+                        </div>
+                        <span class="text-xs font-semibold text-ihh-green flex items-center gap-1">Daha Fazla Bilgi <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></span>
+                    </div>
+
+                    <!-- Activity 2 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-slate-100 text-slate-800 flex items-center justify-center mb-5">
+                                <i data-lucide="hand-heart" class="w-6 h-6 text-ihh-green"></i>
+                            </div>
+                            <h4 class="font-heading font-bold text-lg text-slate-900 mb-2">İnsani Yardım</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                Yetim hamiliği, koli dağıtımları, kış yardımları ve ihtiyaç sahibi ailelere destek.
+                            </p>
+                        </div>
+                        <span class="text-xs font-semibold text-ihh-green flex items-center gap-1">Daha Fazla Bilgi <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></span>
+                    </div>
+
+                    <!-- Activity 3 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-slate-100 text-slate-800 flex items-center justify-center mb-5">
+                                <i data-lucide="compass" class="w-6 h-6 text-ihh-green"></i>
+                            </div>
+                            <h4 class="font-heading font-bold text-lg text-slate-900 mb-2">Sosyal & Kültürel</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                Doğa yürüyüşleri, gençlik kampları, spor turnuvaları ve tarihi kültür gezileri.
+                            </p>
+                        </div>
+                        <span class="text-xs font-semibold text-ihh-green flex items-center gap-1">Daha Fazla Bilgi <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></span>
+                    </div>
+
+                    <!-- Activity 4 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-slate-100 text-slate-800 flex items-center justify-center mb-5">
+                                <i data-lucide="shield-alert" class="w-6 h-6 text-ihh-green"></i>
+                            </div>
+                            <h4 class="font-heading font-bold text-lg text-slate-900 mb-2">Arama Kurtarma (AÇEK)</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                Afet ve acil durum eğitimi, genç arama kurtarma gönüllüsü yetiştirme çalışmaları.
+                            </p>
+                        </div>
+                        <span class="text-xs font-semibold text-ihh-green flex items-center gap-1">Daha Fazla Bilgi <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Announcements Section -->
+        <section id="duyurular" class="py-20 bg-white border-b border-slate-200/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-ihh-green mb-3">GÜNCEL</h2>
+                    <h3 class="text-3xl sm:text-4xl font-heading font-bold text-slate-900">Duyurular & Etkinlikler</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Event 1 -->
+                    <article class="border border-slate-200 rounded-2xl overflow-hidden hover:shadow-md transition-shadow flex flex-col">
+                        <div class="bg-slate-100 p-6 border-b border-slate-100 flex items-center justify-between">
+                            <span class="px-3 py-1 bg-emerald-100 text-ihh-darkgreen font-semibold text-xs rounded-full">Gönüllü Buluşması</span>
+                            <span class="text-xs text-slate-500 font-medium">Yakında</span>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-heading font-bold text-xl text-slate-900 mb-3 hover:text-ihh-green transition-colors">
+                                    Genç İHH Tanışma ve Oryantasyon Programı
+                                </h4>
+                                <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                    Yeni dönem faaliyetlerimizi planlamak ve yeni gönüllülerimizle tanışmak üzere bir araya geliyoruz.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-slate-100 flex items-center text-xs text-slate-500 gap-4">
+                                <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-4 h-4 text-ihh-green"></i> Bu Hafta Sonu</span>
+                                <span class="flex items-center gap-1"><i data-lucide="map-pin" class="w-4 h-4 text-ihh-green"></i> İzmit İlçe Binası</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Event 2 -->
+                    <article class="border border-slate-200 rounded-2xl overflow-hidden hover:shadow-md transition-shadow flex flex-col">
+                        <div class="bg-slate-100 p-6 border-b border-slate-100 flex items-center justify-between">
+                            <span class="px-3 py-1 bg-amber-100 text-amber-900 font-semibold text-xs rounded-full">Akademi</span>
+                            <span class="text-xs text-slate-500 font-medium">Devam Ediyor</span>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-heading font-bold text-xl text-slate-900 mb-3 hover:text-ihh-green transition-colors">
+                                    Haftalık Kitap ve Medeniyet Tahlilleri
+                                </h4>
+                                <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                    Farklı disiplinlerden eserleri okuyor ve her hafta üniversite ve lise gruplarımızla tahlil ediyoruz.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-slate-100 flex items-center text-xs text-slate-500 gap-4">
+                                <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-4 h-4 text-ihh-green"></i> Her Çarşamba</span>
+                                <span class="flex items-center gap-1"><i data-lucide="map-pin" class="w-4 h-4 text-ihh-green"></i> Gençlik Merkezi</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Event 3 -->
+                    <article class="border border-slate-200 rounded-2xl overflow-hidden hover:shadow-md transition-shadow flex flex-col">
+                        <div class="bg-slate-100 p-6 border-b border-slate-100 flex items-center justify-between">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-900 font-semibold text-xs rounded-full">Doğa Sporları</span>
+                            <span class="text-xs text-slate-500 font-medium">Kayıtlar Açık</span>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-heading font-bold text-xl text-slate-900 mb-3 hover:text-ihh-green transition-colors">
+                                    Kocaeli Doğa ve Doğa Yürüyüşü Kampı
+                                </h4>
+                                <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                    Genç gönüllülerimizle doğada tazeleniyor, oryantiring ve temel kampçılık eğitimleri gerçekleştiriyoruz.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-slate-100 flex items-center text-xs text-slate-500 gap-4">
+                                <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-4 h-4 text-ihh-green"></i> Önümüzdeki Ay</span>
+                                <span class="flex items-center gap-1"><i data-lucide="map-pin" class="w-4 h-4 text-ihh-green"></i> Yuvacık / Kocaeli</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA / Banner -->
+        <section class="py-16 bg-ihh-green text-white relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <h2 class="text-3xl sm:text-4xl font-heading font-extrabold mb-4">İyilik Hareketine Sen de Katıl!</h2>
+                <p class="text-emerald-100 max-w-2xl mx-auto mb-8 text-base sm:text-lg">
+                    Zamanını, emeğini veya fikrini iyilik için değerlendirmek istiyorsan kapımız sana her zaman açık.
+                </p>
+                <button onclick="openModal()" class="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-ihh-green bg-white hover:bg-slate-100 shadow-xl transition-all transform hover:scale-105">
+                    <i data-lucide="sparkles" class="w-5 h-5 text-ihh-green"></i>
+                    <span>Hemen Gönüllü Formunu Doldur</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="iletisim" class="py-20 bg-slate-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    
+                    <!-- Info -->
+                    <div>
+                        <h2 class="text-xs font-bold uppercase tracking-widest text-ihh-green mb-3">İLETİŞİM</h2>
+                        <h3 class="text-3xl font-heading font-bold text-slate-900 mb-6">Bize Ulaşın</h3>
+                        <p class="text-slate-600 mb-8 leading-relaxed">
+                            Sorularınız, önerileriniz veya gönüllülük süreçleri hakkında detaylı bilgi almak için iletişim kanallarımızdan bize ulaşabilirsiniz.
+                        </p>
+
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-emerald-100 text-ihh-green flex items-center justify-center shrink-0">
+                                    <i data-lucide="map-pin" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-slate-900 text-sm">Adres</h4>
+                                    <p class="text-slate-600 text-sm">İzmit, Kocaeli / Türkiye</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-emerald-100 text-ihh-green flex items-center justify-center shrink-0">
+                                    <i data-lucide="mail" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-slate-900 text-sm">E-Posta</h4>
+                                    <p class="text-slate-600 text-sm">kocaeli@gencihh.org.tr</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-emerald-100 text-ihh-green flex items-center justify-center shrink-0">
+                                    <i data-lucide="share-2" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-slate-900 text-sm mb-2">Sosyal Medya</h4>
+                                    <div class="flex items-center gap-3">
+                                        <a href="https://instagram.com" target="_blank" class="w-9 h-9 rounded-full bg-white border border-slate-200 text-slate-600 flex items-center justify-center hover:bg-ihh-green hover:text-white hover:border-ihh-green transition-colors" aria-label="Instagram">
+                                            <i data-lucide="instagram" class="w-4 h-4"></i>
+                                        </a>
+                                        <a href="https://x.com" target="_blank" class="w-9 h-9 rounded-full bg-white border border-slate-200 text-slate-600 flex items-center justify-center hover:bg-ihh-green hover:text-white hover:border-ihh-green transition-colors" aria-label="Twitter X">
+                                            <i data-lucide="twitter" class="w-4 h-4"></i>
+                                        </a>
+                                        <a href="https://youtube.com" target="_blank" class="w-9 h-9 rounded-full bg-white border border-slate-200 text-slate-600 flex items-center justify-center hover:bg-ihh-green hover:text-white hover:border-ihh-green transition-colors" aria-label="YouTube">
+                                            <i data-lucide="youtube" class="w-4 h-4"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Message Form -->
+                    <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+                        <h4 class="font-heading font-bold text-xl text-slate-900 mb-6">Hızlı Mesaj Gönder</h4>
+                        <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Adınız Soyadınız</label>
+                                <input type="text" required placeholder="Ahmet Yılmaz" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-ihh-green/20 focus:border-ihh-green text-sm transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">E-Posta Adresiniz</label>
+                                <input type="email" required placeholder="ahmet@example.com" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-ihh-green/20 focus:border-ihh-green text-sm transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Mesajınız</label>
+                                <textarea rows="4" required placeholder="Mesajınızı buraya yazabilirsiniz..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-ihh-green/20 focus:border-ihh-green text-sm transition-all"></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-3.5 rounded-xl font-bold text-white bg-slate-900 hover:bg-ihh-green shadow-md transition-all">
+                                Mesajı Gönder
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 border-b border-slate-800 pb-8 mb-8">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-white rounded-lg p-1 flex items-center justify-center">
+                        <img src="./logo.png" 
+                             alt="Genç İHH Kocaeli Logo" 
+                             class="w-full h-full object-contain"
+                             onerror="this.src='./GENC_IHH_KOCAELI-1.png';">
+                    </div>
+                    <span class="font-heading font-bold text-white text-lg">Genç İHH Kocaeli</span>
+                </div>
+                <div class="flex flex-wrap gap-6 text-sm font-medium">
+                    <a href="#hakkimizda" class="hover:text-white transition-colors">Hakkımızda</a>
+                    <a href="#faaliyetler" class="hover:text-white transition-colors">Faaliyetlerimiz</a>
+                    <a href="#duyurular" class="hover:text-white transition-colors">Duyurular</a>
+                    <a href="#iletisim" class="hover:text-white transition-colors">İletişim</a>
+                </div>
+            </div>
+            <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+                <p>&copy; 2026 Genç İHH Kocaeli. Tüm hakları saklıdır.</p>
+                <p>Geleceği İyilikle İnşa Ediyoruz.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Volunteer Modal -->
+    <div id="volunteerModal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-100 transform transition-all relative">
+            
+            <!-- Close button -->
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-600 p-1 rounded-full hover:bg-slate-100 transition-colors">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <!-- Modal Header -->
+            <div class="mb-6">
+                <div class="w-12 h-12 bg-emerald-100 text-ihh-green rounded-2xl flex items-center justify-center mb-3">
+                    <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-2xl font-heading font-bold text-slate-900">Gönüllü Formu</h3>
+                <p class="text-slate-500 text-sm mt-1">Aramıza katılmak için bilgilerinizi eksiksiz doldurun.</p>
+            </div>
+
+            <!-- Form -->
+            <form onsubmit="handleVolunteerSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Ad Soyad</label>
+                    <input type="text" required placeholder="Adınız Soyadınız" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-ihh-green/20 focus:border-ihh-green text-sm">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Telefon</label>
+                        <input type="tel" required placeholder="05XX XXX XX XX" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-ihh-green/20 focus:border-ihh-green text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">E-Posta</label>
+                        <input type="email" required placeholder="ornek@gmail.com" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-ihh-green/20 focus:border-ihh-green text-sm">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Okul / Bölüm / Meslek</label>
+                    <input type="text" placeholder="Kocaeli Üni - Bilgisayar Müh." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-ihh-green/20 focus:border-ihh-green text-sm">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">İlgi Duyduğunuz Alanlar</label>
+                    <select class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-ihh-green/20 focus:border-ihh-green text-sm bg-white">
+                        <option value="egitim">Eğitim & Üniversite Çalışmaları</option>
+                        <option value="yardim">İnsani Yardım & Saha Operasyonları</option>
+                        <option value="sosyal">Sosyal Etkinlikler & Medya</option>
+                        <option value="arama-kurtarma">Arama Kurtarma (AÇEK)</option>
+                    </select>
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" class="w-full py-3.5 rounded-xl font-bold text-white bg-ihh-green hover:bg-ihh-darkgreen shadow-lg shadow-ihh-green/20 transition-all">
+                        Formu Gönder ve Katıl
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Feedback Message Box (Custom Alert Alternative) -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 hidden max-w-md bg-slate-900 text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 border border-slate-800">
+        <i data-lucide="check-circle-2" class="w-6 h-6 text-emerald-400 shrink-0"></i>
+        <span id="toastMessage" class="text-sm font-medium">İşleminiz başarıyla alındı.</span>
+    </div>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Modal Handlers
+        function openModal() {
+            document.getElementById('volunteerModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('volunteerModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Custom Toast Notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            toastMessage.textContent = message;
+            toast.classList.remove('hidden');
+
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 4000);
+        }
+
+        // Form Handlers
+        function handleVolunteerSubmit(event) {
+            event.preventDefault();
+            closeModal();
+            showToast("Gönüllü başvuru formunuz alındı! En kısa sürede sizinle iletişime geçeceğiz.");
+            event.target.reset();
+        }
+
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            showToast("Mesajınız iletildi. Teşekkür ederiz!");
+            event.target.reset();
+        }
+    </script>
+</body>
+</html>
